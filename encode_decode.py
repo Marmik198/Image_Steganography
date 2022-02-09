@@ -139,6 +139,6 @@ def imageSteganography():
         img = Image.open("resources/image_output.png")
         detectSteganography(img)
     else:
-        raise Exception("Invalid Input !! Enter correct input (from the above options) !!")
+        raise Exception("Invalid Input !! Select from the above options !!")
 
 imageSteganography()
