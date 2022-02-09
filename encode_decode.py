@@ -2,16 +2,13 @@ import cv2
 import numpy as numpy
 from PIL import Image
 
-
 def intToBinary(rgb):
     r, g, b = rgb
     return ('{0:08b}'.format(r), '{0:08b}'.format(g), '{0:08b}'.format(b))
 
-
 def binaryToInt(rgb):
     r, g, b = rgb
     return (int(r, 2), int(g, 2), int(b, 2))
-
 
 def shiftLeft(arr, d):
     newArr = list()
@@ -20,14 +17,12 @@ def shiftLeft(arr, d):
         newArr.append(temp[d:] + ("1" * d))
     return newArr
 
-
 def reduceImageQuality(array):
     reduceArr = list()
     for i in range(len(array)):
         temp = array[i]
         reduceArr.append(temp[0:4] + ("1" * 4))
     return reduceArr
-
 
 def generateReduceQualityImage():
     image = Image.open("resources/image.png")
@@ -39,7 +34,6 @@ def generateReduceQualityImage():
             newPixelMap[i, j] = binaryToInt(reduceImageQuality(intToBinary(pixelMap[i, j])))
     newImage.save("resources/reducedQuality.png")
 
-
 def convertMssgToBinary(messg):
     if type(messg) == str:
         return ''.join([format(ord(i), "08b") for i in messg])
@@ -49,7 +43,6 @@ def convertMssgToBinary(messg):
         return format(messg, "08b")
     else:
         raise TypeError("Input type not supported !!")
-
 
 def hideData(secretMessage, image):
     totalBytes = image.shape[0] * image.shape[1] * 3 // 8
@@ -77,7 +70,6 @@ def hideData(secretMessage, image):
                 break
     return image
 
-
 def generateData(image):
     binaryData = ""
     for values in image:
@@ -96,7 +88,6 @@ def generateData(image):
             break
     return decodedData[:-5]
 
-
 def encodeText():
     imageName = "resources/reducedQuality.png"
     image = cv2.imread(imageName) 
@@ -109,13 +100,11 @@ def encodeText():
     encodedImage = hideData(data, image)  
     cv2.imwrite(fileName, encodedImage)
 
-
 def decodeText():
     imageName = "resources/image_output.png"
     image = cv2.imread(imageName) 
     text = generateData(image)
     return text
-
 
 def detectSteganography(image):
     pixelMap = image.load()
@@ -127,14 +116,12 @@ def detectSteganography(image):
             newpixelMap[i, j] = binaryToInt(shiftLeft(intToBinary(pixelMap[i, j]), x))
     newImage.save("resources/detect_steganography/Pixel_bit_shift_left_by_" + str(x) + ".png")
 
-
 def imageSteganography():
     print("\n---------------------------------------------------- ")
     print("Image Steganography : ")
     print("---------------------------------------------------- ")
     print("1. Encode the data. \n2. Decode the data. \n3. Detect Steganography.")
     print("---------------------------------------------------- ")
-    
     userInput = int(input("Enter your input : "))
     print("---------------------------------------------------- ")
     if (userInput == 1):
