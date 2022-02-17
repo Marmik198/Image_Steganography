@@ -4,8 +4,8 @@
 
 1.  Clone this git repository
     
-    encode\_decode.py - 
-        1. Encodes and Decodes the text into/from image.
+    encode\_decode.py - <br>
+        1. Encodes and Decodes the text into/from image.<br>
         2. Detects the image steganography by left shifting the pixel RGB value.
 
 ![](readme_image/image7.png)
