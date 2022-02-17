@@ -111,10 +111,12 @@ def detectSteganography(image):
     for x in range(1, 5):
         newImage = Image.new(image.mode, image.size)
         newpixelMap = newImage.load()
-    for i in range(image.size[0]):
-        for j in range(image.size[1]):
-            newpixelMap[i, j] = binaryToInt(shiftLeft(intToBinary(pixelMap[i, j]), x))
-    newImage.save("resources/detect_steganography/Pixel_bit_shift_left_by_" + str(x) + ".png")
+        for i in range(image.size[0]):
+            for j in range(image.size[1]):
+                newpixelMap[i, j] = binaryToInt(shiftLeft(intToBinary(pixelMap[i, j]), x))
+        newImage.save("resources/detect_steganography/Pixel_bit_shift_left_by_" + str(x) + ".png")
+        print("Saving", x)
+
 
 def imageSteganography():
     print("\n---------------------------------------------------- ")
