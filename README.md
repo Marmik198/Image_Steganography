@@ -1,6 +1,6 @@
-k# image-steganography
+# Image_Steganography
 
-## Steps to encode, detect & decode (Simulated)
+## Steps to encode, detect & decode
 
 1.  Clone this git repository
     
